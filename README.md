@@ -68,13 +68,11 @@ $$
 Using this equation, I simulated and tested how different AOV glasses could determine depth. In the simulation below, I evaluated the ability of 60 AOV and 120 AOV cameras to ascertain the depth of a red ball. The measured depth is displayed in the bottom-left corner, and the views from the left and right cameras are shown. I calculated the percent error by comparing the measured values at the 0.5-meter and 1-meter marks. Note that each grid square represents 0.5 meters.
 
 **60 AOV Stereo Camera**
-
 <p align="center">
   <img src= photos/sight5.gif>
 </p>
 
 **120 AOV Stereo Camera**
-
 <p align="center">
   <img src= photos/sight6.gif>
 </p>
@@ -90,6 +88,8 @@ Using this equation, I simulated and tested how different AOV glasses could dete
 | *Distance*  | *Measured Value* | *Percetange Error* |
 | 0.5 m       | 0.911 m          | 82.2%              |
 | 1.0 m       | 2.501 m          | 150.1%             |
+
+
 As the table above illustrates, the percentage error in depth increases drastically from a 60 AOV to a 120 AOV, indicating that a wider angle of view makes accurate depth perception more challenging. However, there are limitations to this conclusion. The depth calculation requires focal length, yet the vision sensor in the simulation provides only AOV and camera resolution. This necessitated calibrating the FOV using known distances and then calculating the focal point. Since the focal length might not be precisely accurate, it introduces uncertainty into these results.
 
 **One Wide, One Narrow?**
