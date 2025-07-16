@@ -67,17 +67,13 @@ $$
 
 Using this equation, I simulated and tested how different AOV glasses could determine depth. In the simulation below, I evaluated the ability of 60 AOV and 120 AOV cameras to ascertain the depth of a red ball. The measured depth is displayed in the bottom-left corner, and the views from the left and right cameras are shown. I calculated the percent error by comparing the measured values at the 0.5-meter and 1-meter marks. Note that each grid square represents 0.5 meters.
 
-<p align="center">
-
-  **60 AOV Stereo Camera**
-  
+**60 AOV Stereo Camera**
+<p align="center">  
   <img src= photos/sight5.gif>
 </p>
 
-<p align="center">
-  
-  **120 AOV Stereo Camera**
-  
+**120 AOV Stereo Camera**
+<p align="center">  
   <img src= photos/sight6.gif>
 </p>
 
