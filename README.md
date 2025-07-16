@@ -69,6 +69,8 @@ Using this equation, I simulated and tested how different AOV glasses could dete
 
 **60 AOV Stereo Camera**
 <p align="center">
+
+  **60 AOV Stereo Camera**
   <img src= photos/sight5.gif>
 </p>
 
