@@ -52,19 +52,33 @@ Upon further inspection, I realized that if the smart glasses were to use two ca
 
 Stereo vision operates by comparing two photos captured simultaneously by two cameras positioned at a fixed distance from each other. This technique leverages the similar triangle rule, where the line connecting two corresponding points in the separate images is parallel to the line between the two cameras.
 
+<div align="center">
+  
 | ![sight3](photos/sight3.png) | ![sight4](photos/sight4.png) |
 | ---------------------------- | ---------------------------- |
+
+</div>
+
 By comparing the real-world distance between the cameras to the digital distance of similar points within the images, we can apply the similar triangle rule, as shown in the equation below:
+
 $$
  \frac{T}{Z}=\frac{T+{x}_l-{x}_r}{Z-f} \to Z=\frac{f\cdot T}{{x}_l-{x}_r}
 $$
+
 Using this equation, I simulated and tested how different AOV glasses could determine depth. In the simulation below, I evaluated the ability of 60 AOV and 120 AOV cameras to ascertain the depth of a red ball. The measured depth is displayed in the bottom-left corner, and the views from the left and right cameras are shown. I calculated the percent error by comparing the measured values at the 0.5-meter and 1-meter marks. Note that each grid square represents 0.5 meters.
 
 **60 AOV Stereo Camera**
-![sight5](photos/sight5.gif)
+
+<p align="center">
+  <img src= photos/sight5.gif>
+</p>
 
 **120 AOV Stereo Camera**
-![sight6](photos/sight6.gif)
+
+<p align="center">
+  <img src= photos/sight6.gif>
+</p>
+
 
 | 60 AOV      |                  |                    |
 | ----------- | ---------------- | ------------------ |
