@@ -77,6 +77,7 @@ Using this equation, I simulated and tested how different AOV glasses could dete
   <img src= photos/sight6.gif>
 </p>
 
+<div align="center">
 
 | 60 AOV      |                  |                    |
 | ----------- | ---------------- | ------------------ |
@@ -88,6 +89,8 @@ Using this equation, I simulated and tested how different AOV glasses could dete
 | *Distance*  | *Measured Value* | *Percetange Error* |
 | 0.5 m       | 0.911 m          | 82.2%              |
 | 1.0 m       | 2.501 m          | 150.1%             |
+
+</div>
 
 
 As the table above illustrates, the percentage error in depth increases drastically from a 60 AOV to a 120 AOV, indicating that a wider angle of view makes accurate depth perception more challenging. However, there are limitations to this conclusion. The depth calculation requires focal length, yet the vision sensor in the simulation provides only AOV and camera resolution. This necessitated calibrating the FOV using known distances and then calculating the focal point. Since the focal length might not be precisely accurate, it introduces uncertainty into these results.
