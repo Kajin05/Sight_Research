@@ -28,12 +28,18 @@ The camera's specifications, particularly its Angle of View (AOV), determine the
 
 As demonstrated in the simulation above, the red ball appears in the wide-angle camera's view first, followed by the narrower camera. However, you can also observe that the wide-angle camera exaggerates depth, making the red ball appear farther away than its actual distance. Furthermore, wide-angle cameras are more susceptible to radial distortion; objects closer to the camera become increasingly stretched. The bottom simulation clearly illustrates this, showing that the square face is more distorted in the wide-angle camera's view compared to the narrow-angle camera's.
 
-![sight2](photos/sight2.gif)
+<p align="center">
+  <img src= photos/sight2.gif>
+</p>
+
+<center>
 
 |      | Wide AOV Camera                        | Narrow AOV Camera                 |
 | ---- | -------------------------------------- | --------------------------------- |
 | Pros | - Can capture more information         | - Less likely to have distortion  |
 | Cons | - Prone to radial and depth distortion | - Less information being captured |
+
+</center>
 
 The table above clearly demonstrates that both wide and narrow AOV cameras have distinct applications. For our purpose of quickly locating objects with an AI camera, a wide AOV camera would be more beneficial.
 
