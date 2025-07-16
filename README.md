@@ -32,6 +32,7 @@ As demonstrated in the simulation above, the red ball appears in the wide-angle 
 | ---- | -------------------------------------- | --------------------------------- |
 | Pros | - Can capture more information         | - Less likely to have distortion  |
 | Cons | - Prone to radial and depth distortion | - Less information being captured |
+
 The table above clearly demonstrates that both wide and narrow AOV cameras have distinct applications. For our purpose of quickly locating objects with an AI camera, a wide AOV camera would be more beneficial.
 
 This choice is preferable because a wider AOV more closely approximates the natural field of human vision. This similarity in visual perception would allow the user to interact with the AI glasses more intuitively, as if the device were an extension of their own eyes.
