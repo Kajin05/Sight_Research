@@ -104,29 +104,29 @@ If we use two cameras to measure depth, we can also put their two images togethe
 OpenCV, an open-source computer vision software library, provides image stitching functionalities. The full stitching tutorial is avaliable in this [github](https://github.com/OpenStitching/stitching_tutorial/blob/master/docs/Stitching%20Tutorial.md), however here is a simplified overview of the process involves several steps:
 Lets say we are given these four images and asked to create one photo. Let's say they are images one through four from left to right.
 <p align="center">  
-  <img src= photos/sight8.gif>
+  <img src= photos/sight8.png>
 </p>
 
 1. Resizing: Images are initially resized to a medium resolution. This makes processing these images easier.
 
 2. Feature Detection: The system then identifies unique features or elements within these images that may also be present in other images.
 <p align="center">  
-  <img src= photos/sight7.gif>
+  <img src= photos/sight7.png>
 </p>
 
 3. Feature Matching: These features are matched across corresponding images to determine which images have a high confidence of overlap. These matches are based on confidence. For example, image 1 and 2 has high confidence that they are a match. However, image 4 would have low confidence with all other images, showing that image 4 is not part of this panorama.
 <p align="center">  
-  <img src= photos/sight9.gif>
+  <img src= photos/sight9.png>
 </p>
 
 4. Subset Creation and Warping: Subsets of relevant images are created, and these photos are then warped to ensure correct composition.
 
 5. Cropping and Stitching: Finally, the images are cropped and seamlessly stitched together, prioritizing areas with minimal interference.
 <p align="center">  
-  <img src= photos/sight10.gif>
+  <img src= photos/sight10.png>
 </p>
 <p align="center">  
-  <img src= photos/sight11.gif>
+  <img src= photos/sight11.png>
 </p>
 
 The common practice of security companies using two cameras to achieve a 180-degree field of view (AOV) demonstrates the viability of image stitching for creating seamless panoramic images. 
