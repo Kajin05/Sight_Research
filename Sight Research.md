@@ -31,6 +31,7 @@ As demonstrated in the simulation above, the red ball appears in the wide-angle 
 | ---- | -------------------------------------- | --------------------------------- |
 | Pros | - Can capture more information         | - Less likely to have distortion  |
 | Cons | - Prone to radial and depth distortion | - Less information being captured |
+
 The table above clearly demonstrates that both wide and narrow AOV cameras have distinct applications. For our purpose of quickly locating objects with an AI camera, a wide AOV camera would be more beneficial.
 
 This choice is preferable because a wider AOV more closely approximates the natural field of human vision. This similarity in visual perception would allow the user to interact with the AI glasses more intuitively, as if the device were an extension of their own eyes.
@@ -71,28 +72,33 @@ As the table above illustrates, the percentage error in depth increases drastica
 **One Wide, One Narrow?**
 I considered testing a combination of one wide-angle and one narrow-angle camera, with the idea that the wide-angle camera could spot objects while the narrow-angle camera calculated depth. Although technically feasible with prior calibration, this approach would not be practical. It would be more efficient to utilize two wide-angle cameras and calibrate them beforehand for accurate depth estimation. This setup would offer a broader field of view while still providing precise depth information.
 ## Image Stitching
-If we were to use two cameras, we can stitch the two images together to make one wide panorama. Having one continuos photo would simulate a human vision better than having two seperate photos. This would give the AI a better understanding of where the object is located relative to where the user is facing. 
-Image stitching function can be found in OpenCV, which is an open source computer vision software library. To simply give a tutorial, image stitching starts with the images being resized to medium resolution. 
-**Image**
 
-With these medium sized images, we now find features or elements within the images that might be found in other images as well. 
-**Image**
+If we use two cameras to measure depth, we can also put their two images together to create a single panorama using a technique called image stitching. This approach would simulate human vision more accurately and give the AI a better understanding of an object's location relative to where the user is looking. A continuous panoramic photo offers a superior representation compared to two separate images.
 
-These features are then matched with the corresponding images. This tells us which images have a 
-high matching confidence with other images. 
-**Image**
+OpenCV, an open-source computer vision software library, provides image stitching functionalities. The full stitching tutorial is avaliable in this [github](https://github.com/OpenStitching/stitching_tutorial/blob/master/docs/Stitching%20Tutorial.md), however here is a simplified overview of the process involves several steps:
+Lets say we are given these four images and asked to create one photo. Let's say they are images one through four from left to right.
+![sight8](photos/sight8.png)
 
-Subsets are created so that only relevant images are stitched. The correct photos are warped so they can be composed correctly and then stitched together based on where there will be the least amount of interference. 
-**Image**
+1. Resizing: Images are initially resized to a medium resolution. This makes processing these images easier.
 
-Security company often use two cameras to make a security camera that has an AOV of 180 degree. With this, we know that image stitching is a viable option to seemlessly stitch two images together. 
+2. Feature Detection: The system then identifies unique features or elements within these images that may also be present in other images.
+![sight7](photos/sight7.png)
 
-Image stitching with two different AOV camera would work but that would leave more image from the wider AOV camera to be cropped out to match the narrower image, making it inefficent. 
+3. Feature Matching: These features are matched across corresponding images to determine which images have a high confidence of overlap. These matches are based on confidence. For example, image 1 and 2 has high confidence that they are a match. However, image 4 would have low confidence with all other images, showing that image 4 is not part of this panorama.
+![sight9](photos/sight9.png)
 
+4. Subset Creation and Warping: Subsets of relevant images are created, and these photos are then warped to ensure correct composition.
+
+5. Cropping and Stitching: Finally, the images are cropped and seamlessly stitched together, prioritizing areas with minimal interference.
+![sight10](photos/sight10.png)
+![sight11](photos/sight11.png)
+
+The common practice of security companies using two cameras to achieve a 180-degree field of view (AOV) demonstrates the viability of image stitching for creating seamless panoramic images. 
 ## Gyroscope Use
-Gyroscope is needed for the AI glasses to know where the user is looking at. When the user is turning their head to look for an object, a new image should be taken when the user is facing a different angle where they were originally facing. A gyroscope measure the change in rotational axis, allowing to take the photo when the timing is just right. 
+
+A gyroscope is essential for the AI glasses to determine the user's gaze direction. When the user turns their head to locate an object, a new image needs to be captured once they're facing a different angle than before. A gyroscope measures changes in rotational axis, enabling the system to take a photo at precisely the right moment.
 **IMAGE**
 
-With just measuring rotational change, 3 degrees of freedom (3 DOF) would suffice, but when we want to track the AI glasses, we would need a 6 DOF gyroscope/accelerometer tracker. Addtionally, because these trackers need to intergrate to get the position values, there are a lot of errors when calculating for the real position. Hence, to get the most accurate positional value, GPS is needed to avoid inaccuracy. 
-
+With just measuring rotational change, 3 degrees of freedom (3 DOF) would suffice, but when we want to completely track the AI glasses, we would need a 6 DOF gyroscope/accelerometer tracker. Addtionally, because these trackers need to intergrate to get the position values, there are a lot of errors when calculating for the real position. Hence, to get the most accurate positional value, GPS is needed to avoid inaccuracy. 
 ## Method
+
