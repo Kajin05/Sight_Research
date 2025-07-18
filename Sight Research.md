@@ -57,20 +57,25 @@ Using this equation, I simulated and tested how different AOV glasses could dete
 **120 AOV Stereo Camera**
 ![sight6](photos/sight6.gif)
 
-| 60 AOV      |                  |                    |
-| ----------- | ---------------- | ------------------ |
-| *Distance*  | *Measured Value* | *Percetange Error* |
-| 0.5 m       | 0.528 m          | 5.6%               |
-| 1.0 m       | 1.026 m          | 2.6%               |
-|             |                  |                    |
-| **120 AOV** |                  |                    |
-| *Distance*  | *Measured Value* | *Percetange Error* |
-| 0.5 m       | 0.911 m          | 82.2%              |
-| 1.0 m       | 2.501 m          | 150.1%             |
+| 60 AOV         |                      |                        |     | 120 AOV              |                        |
+| -------------- | -------------------- | ---------------------- | --- | -------------------- | ---------------------- |
+| *Distance (m)* | *Measured Value (m)* | *Percetange Error (%)* |     | *Measured Value (m)* | *Percetange Error (%)* |
+| 0.2            | 0.1916               | 4.20                   |     | 0.3453               | 72.7                   |
+| 0.3            | 0.2956               | 1.47                   |     | 0.5008               | 66.9                   |
+| 0.4            | 0.3875               | 0.625                  |     | 0.6677               | 66.9                   |
+| 0.5            | 0.5283               | 5.66                   |     | 0.9112               | 82.2                   |
+| 0.6            | 0.5813               | 3.12                   |     | 1.1129               | 85.5                   |
+| 0.7            | 0.9178               | 31.1                   |     | 1.2523               | 78.9                   |
+| 0.8            | 0.7926               | 0.925                  |     | 1.4309               | 78.7                   |
+| 0.9            | 0.8719               | 3.12                   |     | 1.6694               | 85.5                   |
+| 1.0            | 1.026                | 2.50                   |     | 2.501                | 150                    |
+
 As the table above illustrates, the percentage error in depth increases drastically from a 60 AOV to a 120 AOV, indicating that a wider angle of view makes accurate depth perception more challenging. However, there are limitations to this conclusion. The depth calculation requires focal length, yet the vision sensor in the simulation provides only AOV and camera resolution. This necessitated calibrating the FOV using known distances and then calculating the focal point. Since the focal length might not be precisely accurate, it introduces uncertainty into these results.
 
 **One Wide, One Narrow?**
-I considered testing a combination of one wide-angle and one narrow-angle camera, with the idea that the wide-angle camera could spot objects while the narrow-angle camera calculated depth. Although technically feasible with prior calibration, this approach would not be practical. It would be more efficient to utilize two wide-angle cameras and calibrate them beforehand for accurate depth estimation. This setup would offer a broader field of view while still providing precise depth information.
+I considered testing a combination of one wide-angle and one narrow-angle camera, with the idea that the wide-angle camera could spot objects while the narrow-angle camera calculated depth. Although technically feasible with prior calibration, this approach would not be practical. It would be more efficient to utilize two wide-angle cameras and calibrate them beforehand for accurate depth estimation. 
+
+As seen with the percentage error of the 120 AOV camera setup, the values are in a relatively compact range, from 66.9% to 85.5% (if we consider 150% an outlier). This consistent error indicates that we can either calibrate the depth calculation beforehand or undistort the images. This setup would offer a broader field of view while still providing precise depth information.
 ## Image Stitching
 
 If we use two cameras to measure depth, their two images can also be combined into a single panorama using image stitching. This approach would more accurately simulate human vision and provide the AI with a better understanding of an object's location relative to the user's gaze. A continuous panoramic photo offers a superior representation compared to two separate images. Furthermore, a larger field of view would reduce the need for the user to turn their head frequently because of the increased likelihood of the object being within the camera's view.
