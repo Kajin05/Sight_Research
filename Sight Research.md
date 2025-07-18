@@ -73,7 +73,7 @@ As the table above illustrates, the percentage error in depth increases drastica
 I considered testing a combination of one wide-angle and one narrow-angle camera, with the idea that the wide-angle camera could spot objects while the narrow-angle camera calculated depth. Although technically feasible with prior calibration, this approach would not be practical. It would be more efficient to utilize two wide-angle cameras and calibrate them beforehand for accurate depth estimation. This setup would offer a broader field of view while still providing precise depth information.
 ## Image Stitching
 
-If we use two cameras to measure depth, we can also put their two images together to create a single panorama using a technique called image stitching. This approach would simulate human vision more accurately and give the AI a better understanding of an object's location relative to where the user is looking. A continuous panoramic photo offers a superior representation compared to two separate images.
+If we use two cameras to measure depth, their two images can also be combined into a single panorama using image stitching. This approach would more accurately simulate human vision and provide the AI with a better understanding of an object's location relative to the user's gaze. A continuous panoramic photo offers a superior representation compared to two separate images. Furthermore, a larger field of view would reduce the need for the user to turn their head frequently because of the increased likelihood of the object being within the camera's view.
 
 OpenCV, an open-source computer vision software library, provides image stitching functionalities. The full stitching tutorial is avaliable in this [github](https://github.com/OpenStitching/stitching_tutorial/blob/master/docs/Stitching%20Tutorial.md), however here is a simplified overview of the process involves several steps:
 Lets say we are given these four images and asked to create one photo. Let's say they are images one through four from left to right.
@@ -94,11 +94,37 @@ Lets say we are given these four images and asked to create one photo. Let's say
 ![sight11](photos/sight11.png)
 
 The common practice of security companies using two cameras to achieve a 180-degree field of view (AOV) demonstrates the viability of image stitching for creating seamless panoramic images. 
-## Gyroscope Use
+## Gyroscope and Speaker Use
 
+**Gyroscope**
 A gyroscope is essential for the AI glasses to determine the user's gaze direction. When the user turns their head to locate an object, a new image needs to be captured once they're facing a different angle than before. A gyroscope measures changes in rotational axis, enabling the system to take a photo at precisely the right moment.
-**IMAGE**
 
-With just measuring rotational change, 3 degrees of freedom (3 DOF) would suffice, but when we want to completely track the AI glasses, we would need a 6 DOF gyroscope/accelerometer tracker. Addtionally, because these trackers need to intergrate to get the position values, there are a lot of errors when calculating for the real position. Hence, to get the most accurate positional value, GPS is needed to avoid inaccuracy. 
-## Method
+![sight12](photos/sight12.gif)
 
+This is a simulated example of how the glasses would direct the user to find an object, in this case, a red sphere. Since we know the combined AOV of the two cameras and their initial orientation, we can determine when the user changes direction. When the user moves outside the AOV of the initial picture, a new image is captured to continue searching for the object. This process repeats until the object is found. Once we have an image of the object, we can calculate its depth using stereo vision. Additionally, we can determine the object's offset from the center of the image by finding the average pixel position of the object and measuring its distance from the central axis.
+
+![sight13](photos/sight13.png)
+
+**Speakers**
+Building on the location data, we can guide users to an object using spatial audio cues delivered through stereo speakers. This involves employing the Head-Related Transfer Function (HRTF), which models how our ears perceive sound from specific points in space.
+
+![sight14](photos/sight14.png)
+
+For instance, if an object is located to the user's right and slightly below chest level, we can use HRTF to generate a "ping" sound that appears to originate from that precise direction. This spatialized audio enables the user to intuitively reach towards the object.
+
+HRTF works by calculating how an incoming sound wave, from its source, is filtered by the diffraction and reflection caused by the user's head before it reaches their ears. By creating digital filters that mimic these real-world acoustic effects, we can accurately recreate these spatial cues, providing an immersive and directional auditory experience.
+
+## Putting it All Together
+
+```mermaid
+graph TD
+	A(왼쪽 카메라) -->|왼쪽 이미지| C[이미지 처리] 
+	B(오른쪽 카메라) -->|오른쪽 이미지|C 
+	C --> |파노라마/이미지| D{메인 제어} 
+	E(자이로스코프) --> |방향| D 
+	D --> |객체 위치|F[스피커] 
+	F-->|방향 안내|G(사용자) 
+	G --> |입력|D
+```
+
+This understanding confirms the initial method's feasibility. By using two wide Angle of View (AOV) cameras, we can achieve a panoramic view with depth sensing, effectively simulating human vision. The user would then look around to find an object. When the glasses detect a new viewing direction via the gyroscope, a new photo is taken. Once the object is located, we can determine its position and guide the user with an audio ping indicating its estimated location. This system would allow users to find objects solely with AI glasses.
