@@ -1,30 +1,30 @@
 
-# Sight Research: Directing Visually Impaired Users with Smart Glasses
+# 시선처: 스마트 안경으로 시각 장애인 사용자 안내하기
 
-This repository details my research process on directing the gaze of visually impaired individuals using smart glasses. This is a critical area of focus because if a visually impaired user is searching for an object that is outside the smart glasses' camera's field of view, the system cannot process the command effectively. 한국어
-### Method
+이 저장소는 스마트 안경을 사용하여 시각 장애인의 시선을 유도하는 저의 연구 과정을 상세히 설명합니다. 시각 장애인 사용자가 스마트 안경 카메라의 시야 범위 밖에 있는 물체를 찾으려 할 경우, 시스템이 명령을 효과적으로 처리할 수 없기 때문에 이 분야는 매우 중요합니다.
+### 방법
 
-I propose a method to guide a user's gaze when they command AI-powered smart glasses to locate an object. The smart glasses would capture a wide-angle photo and process it to search for the requested object. If the object is not found, the glasses would direct the user to rotate in a specific direction. This rotation allows the glasses to capture another photo from a new viewing angle. This iterative process continues until the object is located, at which point the glasses would direct the user to reach in the general direction of the object. While not the sole method for object localization, I believe this approach offers the most efficient solution given the current technological limitations of smart glasses.
+저는 AI 기반 스마트 안경에 특정 물체를 찾아달라고 명령했을 때, 사용자의 시선을 안내하는 방법을 제안합니다. 스마트 안경은 광각 사진을 촬영하고 이를 처리하여 요청된 물체를 검색합니다. 만약 물체가 발견되지 않으면, 안경은 사용자에게 특정 방향으로 회전하도록 지시합니다. 이 회전을 통해 안경은 새로운 시야각에서 또 다른 사진을 촬영할 수 있습니다. 이 반복적인 과정은 물체가 발견될 때까지 계속되며, 물체가 발견되면 안경은 사용자에게 해당 물체의 대략적인 방향으로 손을 뻗도록 지시합니다. 물체 위치 파악을 위한 유일한 방법은 아니지만, 현재 스마트 안경의 기술적 한계를 고려할 때 이 접근 방식이 가장 효율적인 해결책이라고 생각합니다.
 
-To assess the viability of this method, we must understand several key concepts:
+이 방법의 실현 가능성을 평가하기 위해 몇 가지 핵심 개념을 이해해야 합니다:
 
-- Camera Configuration
-- Image Stitching
-- Gyroscope Use
+- 카메라 구성
+- 이미지 스티칭
+- 자이로스코프 사용
 
-We will now examine each of these components and discuss their contribution to the process of object finding through AI glasses.
+이제 각 구성 요소를 살펴보고 AI 안경을 통한 물체 찾기 과정에 어떻게 기여하는지 논의하겠습니다.
 
-## Camera Angle of View
+## 카메라 시야각
 
-### One Camera
+### 단일 카메라
 
-The camera's specifications, particularly its Angle of View (AOV), determine the range of the smart glasses' visual field. AOV refers to the maximum extent a camera can capture through its lens. A wider AOV provides a broader viewing angle but introduces more radial distortion, causing straight lines to appear curved. Conversely, a narrower AOV reduces distortion but captures less information. Below, I have set up a simulation to illustrate the outputs of different AOVs. The wide camera is set at a 120-degree AOV, while the narrow camera is set at a 60-degree AOV. 
+카메라의 사양, 특히 **시야각(AOV)**은 스마트 안경의 시각적 범위(시야)를 결정합니다. AOV는 카메라가 렌즈를 통해 캡처할 수 있는 최대 범위를 나타냅니다. AOV가 넓을수록 더 넓은 시야각을 제공하지만, 방사형 왜곡이 더 많이 발생하여 직선이 곡선으로 보이게 됩니다. 반대로 AOV가 좁으면 왜곡은 줄어들지만 더 적은 정보를 캡처합니다. 아래에서는 다양한 AOV의 결과물을 보여주기 위한 시뮬레이션을 설정했습니다. 광각 카메라는 120도 AOV로 설정되었고, 협각 카메라는 60도 AOV로 설정되었습니다.
 
 <p align="center">
   <img src= photos/sight1.gif>
 </p>
 
-As demonstrated in the simulation above, the red ball appears in the wide-angle camera's view first, followed by the narrower camera. However, you can also observe that the wide-angle camera exaggerates depth, making the red ball appear farther away than its actual distance. Furthermore, wide-angle cameras are more susceptible to radial distortion; objects closer to the camera become increasingly stretched. The bottom simulation clearly illustrates this, showing that the square face is more distorted in the wide-angle camera's view compared to the narrow-angle camera's.
+위 시뮬레이션에서 보듯이 빨간 공은 광각 카메라 뷰에 먼저 나타나고, 이어서 협각 카메라 뷰에 나타납니다. 하지만 광각 카메라가 깊이를 과장하여 빨간 공이 실제 거리보다 더 멀리 있는 것처럼 보이게 한다는 점도 확인할 수 있습니다. 게다가 광각 카메라는 방사형 왜곡에 더 취약하여 카메라에 가까운 물체는 점점 더 늘어나 보입니다. 아래 시뮬레이션은 이를 명확히 보여주는데, 정사각형 면이 협각 카메라 뷰에 비해 광각 카메라 뷰에서 더 많이 왜곡되어 있습니다.
 
 <p align="center">
   <img src= photos/sight2.gif>
@@ -32,10 +32,14 @@ As demonstrated in the simulation above, the red ball appears in the wide-angle 
 
 <div align="center">
 
-|      | Wide AOV Camera                        | Narrow AOV Camera                 |
+|      | 광각 AOV 카메라                        | 협각 AOV 카메라                |
 | ---- | -------------------------------------- | --------------------------------- |
-| Pros | - Can capture more information         | - Less likely to have distortion  |
-| Cons | - Prone to radial and depth distortion | - Less information being captured |
+| 장점 | - 더 많은 정보 캡처 가능         | - 왜곡 발생 가능성 낮음  |
+| 단점 | - 방사형 및 깊이 왜곡에 취약 | - 캡처되는 정보량 적음 |
+
+광각 AOV 카메라	협각 AOV 카메라
+장점	- 더 많은 정보 캡처 가능	- 왜곡 발생 가능성 낮음
+단점	- 방사형 및 깊이 왜곡에 취약	- 캡처되는 정보량 적음
 
 </div>
 
