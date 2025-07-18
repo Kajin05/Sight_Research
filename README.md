@@ -6,8 +6,6 @@ This repository details my research process on directing the gaze of visually im
 
 I propose a method to guide a user's gaze when they command AI-powered smart glasses to locate an object. The smart glasses would capture a wide-angle photo and process it to search for the requested object. If the object is not found, the glasses would direct the user to rotate in a specific direction. This rotation allows the glasses to capture another photo from a new viewing angle. This iterative process continues until the object is located, at which point the glasses would direct the user to reach in the general direction of the object. While not the sole method for object localization, I believe this approach offers the most efficient solution given the current technological limitations of smart glasses.
 
-**[ADD GIF SHOWING HOW IT WOULD WORK]**
-
 To assess the viability of this method, we must understand several key concepts:
 
 - Camera Configuration
