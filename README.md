@@ -130,6 +130,7 @@ Lets say we are given these four images and asked to create one photo. Let's say
 The common practice of security companies using two cameras to achieve a 180-degree field of view (AOV) demonstrates the viability of image stitching for creating seamless panoramic images. 
 ## Gyroscope and Speaker Use
 **Gyroscope**
+
 A gyroscope is essential for the AI glasses to determine the user's gaze direction. When the user turns their head to locate an object, a new image needs to be captured once they're facing a different angle than before. A gyroscope measures changes in rotational axis, enabling the system to take a photo at precisely the right moment.
 
 <p align="center">  
@@ -142,7 +143,9 @@ This is a simulated example of how the glasses would direct the user to find an 
   <img src= photos/sight13.png>
 </p>
 
+--- 
 **Speakers**
+
 Building on the location data, we can guide users to an object using spatial audio cues delivered through stereo speakers. This involves employing the Head-Related Transfer Function (HRTF), which models how our ears perceive sound from specific points in space.
 
 <p align="center">  
