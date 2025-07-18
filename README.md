@@ -135,7 +135,7 @@ $$
   <img src= photos/sight11.png>
 </p>
 
-180도 시야각(AOV)을 구현하기 위해 두 대의 카메라를 사용하는 보안 회사들의 일반적인 관행은 이음매 없는 파노라마 이미지를 생성하는 데 있어 이미지 스티칭의 실현 가능성을 입증합니다. 
+180도 시야각(AOV)을 구현하기 위해 두 대의 카메라를 사용하는 보안 [회사들의](https://reolink.com/product/argus-4-pro/?srsltid=AfmBOoo44aWuTcH1BUjl8nWQWVUOiKLWml_Jzm-thIy2QriYu4fBK-Nx) 일반적인 관행은 이음매 없는 파노라마 이미지를 생성하는 데 있어 이미지 스티칭의 실현 가능성을 입증합니다. 
 ## 자이로스코프 및 스피커 사용
 
 **자이로스코프**
